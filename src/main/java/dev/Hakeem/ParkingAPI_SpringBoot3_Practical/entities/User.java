@@ -1,4 +1,4 @@
-package dev.Hakeem.entities;
+package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -18,7 +18,6 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   
     @Column(name = "id")
     private Long id;
     
