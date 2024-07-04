@@ -36,9 +36,9 @@ public class UserContriller {
          
     }
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> getById(@PathVariable Long id){
+    public ResponseEntity<UserResponseDTO> getById(@PathVariable Long id){
         User obj = userService.buscarPorId(id);
-        return ResponseEntity.ok().body(obj);
+        return ResponseEntity.ok(UserMapper.toDto(obj));
     }
     @PatchMapping(value = "/{id}")
     public ResponseEntity<User> updatePassword(@PathVariable Long id,@RequestBody User user){
