@@ -1,5 +1,6 @@
 package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +42,10 @@ public class UserContriller {
         User obj = userService.editarSenha(id,user.getPassword());
         return ResponseEntity.ok().body(obj);
     }
+
+    @GetMapping
+   public ResponseEntity<List<User>> findAll( User user){
+    List<User> list = userService.findAll();
+    return ResponseEntity.ok(list);
+   }
 }
