@@ -18,6 +18,7 @@ import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.entities.User;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.service.UserService;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserCreateDto;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserResponseDTO;
+import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserSenhaDto;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -41,9 +42,9 @@ public class UserContriller {
         return ResponseEntity.ok(UserMapper.toDto(obj));
     }
     @PatchMapping(value = "/{id}")
-    public ResponseEntity<User> updatePassword(@PathVariable Long id,@RequestBody User user){
-        User obj = userService.editarSenha(id,user.getPassword());
-        return ResponseEntity.ok().body(obj);
+    public ResponseEntity<Void> updatePassword(@PathVariable Long id,@RequestBody UserSenhaDto userSenhaDto){
+        User obj = userService.editarSenha(id,userSenhaDto.getSenhaAtual(),userSenhaDto.getNovaSenha(),userSenhaDto.getConfirmaSenha());
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping

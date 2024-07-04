@@ -29,9 +29,16 @@ public User buscarPorId(Long id) {
 }
 
 @Transactional
-public User editarSenha(Long id,String password) {
+public User editarSenha(Long id, String senhaAtual, String novaSenha, String confirmaSenha) {
+    if (!novaSenha.equals(confirmaSenha)) {
+        throw new RuntimeException("Nova senha nao confero com confirmacao de senha.");
+    }
     User user = buscarPorId(id);
-    user.setPassword(password);
+
+     if (!user.getPassword().equals(senhaAtual)) {
+        throw new RuntimeException("Nova senha nao confere.");
+     }
+    user.setPassword(novaSenha);
     return user;
 }
 
@@ -41,6 +48,8 @@ public List<User> findAll() {
     return userRepository.findAll();
     
 }
+
+
 
 
 
