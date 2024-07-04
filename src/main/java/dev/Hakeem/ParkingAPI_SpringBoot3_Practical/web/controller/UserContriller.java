@@ -1,4 +1,4 @@
-package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.controller;
+package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.controller;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.entities.User;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.service.UserService;
+import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserCreateDto;
+import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserResponseDTO;
+import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 
 
@@ -27,9 +30,9 @@ public class UserContriller {
     private UserService userService;
     
     @PostMapping
-    public ResponseEntity<User>create(@RequestBody User user){
-         User obj = userService.salvar(user);
-         return ResponseEntity.status(HttpStatus.CREATED).body(obj);
+    public ResponseEntity<UserResponseDTO>create(@RequestBody UserCreateDto userCreateDto){
+         User obj = userService.salvar(UserMapper.toUser(userCreateDto));
+         return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDto(obj));
          
     }
     @GetMapping(value = "/{id}")
