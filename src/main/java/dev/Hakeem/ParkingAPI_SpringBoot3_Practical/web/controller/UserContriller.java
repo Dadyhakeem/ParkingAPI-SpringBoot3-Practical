@@ -1,11 +1,8 @@
 package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +17,7 @@ import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserCreateDto;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserResponseDTO;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserSenhaDto;
 import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.mapper.UserMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
@@ -31,7 +29,7 @@ public class UserContriller {
     private UserService userService;
     
     @PostMapping
-    public ResponseEntity<UserResponseDTO>create(@RequestBody UserCreateDto userCreateDto){
+    public ResponseEntity<UserResponseDTO>create(@Valid @RequestBody UserCreateDto userCreateDto){
          User obj = userService.salvar(UserMapper.toUser(userCreateDto));
          return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDto(obj));
          
@@ -41,11 +39,15 @@ public class UserContriller {
         User obj = userService.buscarPorId(id);
         return ResponseEntity.ok(UserMapper.toDto(obj));
     }
+
+
         @PatchMapping(value = "/{id}")
         public ResponseEntity<Void> updatePassword(@PathVariable Long id,@RequestBody UserSenhaDto     userSenhaDto){
         User obj = userService.editarSenha(id,userSenhaDto.getSenhaAtual(),userSenhaDto.getNovaSenha(),userSenhaDto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
+
+    
 
     @GetMapping
    public ResponseEntity<List<UserResponseDTO>> findAll( User user){
