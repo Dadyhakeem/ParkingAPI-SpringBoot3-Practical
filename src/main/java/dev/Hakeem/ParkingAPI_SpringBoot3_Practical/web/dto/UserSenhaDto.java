@@ -1,4 +1,4 @@
-package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto;
+package dev.hakeem.parkingapi_springboot3_practical.web.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

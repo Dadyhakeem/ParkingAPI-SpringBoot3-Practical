@@ -1,4 +1,4 @@
-package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.controller;
+package dev.hakeem.parkingapi_springboot3_practical.web.controller;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.entities.User;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.service.UserService;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserCreateDto;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserResponseDTO;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.UserSenhaDto;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.web.dto.mapper.UserMapper;
+import dev.hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.hakeem.parkingapi_springboot3_practical.service.UserService;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserSenhaDto;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.mapper.UserMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 
 
 @RequiredArgsConstructor

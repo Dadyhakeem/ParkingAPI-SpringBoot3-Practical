@@ -1,4 +1,4 @@
-package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.service;
+package dev.hakeem.parkingapi_springboot3_practical.service;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.entities.User;
-import dev.Hakeem.ParkingAPI_SpringBoot3_Practical.repository.UserRepository;
+import dev.hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.hakeem.parkingapi_springboot3_practical.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+
 @RequiredArgsConstructor
 @Service
 public class UserService {

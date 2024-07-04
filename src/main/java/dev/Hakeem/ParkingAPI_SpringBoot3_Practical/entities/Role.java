@@ -1,4 +1,4 @@
-package dev.Hakeem.ParkingAPI_SpringBoot3_Practical.entities;
+package dev.hakeem.parkingapi_springboot3_practical.entities;
 
 public enum Role {
      ROLE_ADMIN,
