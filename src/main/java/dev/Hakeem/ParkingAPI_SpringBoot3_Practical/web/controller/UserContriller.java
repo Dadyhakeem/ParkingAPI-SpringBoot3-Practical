@@ -42,7 +42,7 @@ public class UserContriller {
 
 
         @PatchMapping(value = "/{id}")
-        public ResponseEntity<Void> updatePassword(@PathVariable Long id,@RequestBody UserSenhaDto     userSenhaDto){
+        public ResponseEntity<Void> updatePassword(@PathVariable Long id,@Valid @RequestBody UserSenhaDto userSenhaDto){
         User obj = userService.editarSenha(id,userSenhaDto.getSenhaAtual(),userSenhaDto.getNovaSenha(),userSenhaDto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
