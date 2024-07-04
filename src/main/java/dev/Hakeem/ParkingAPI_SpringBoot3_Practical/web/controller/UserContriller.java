@@ -41,15 +41,15 @@ public class UserContriller {
         User obj = userService.buscarPorId(id);
         return ResponseEntity.ok(UserMapper.toDto(obj));
     }
-    @PatchMapping(value = "/{id}")
-    public ResponseEntity<Void> updatePassword(@PathVariable Long id,@RequestBody UserSenhaDto userSenhaDto){
+        @PatchMapping(value = "/{id}")
+        public ResponseEntity<Void> updatePassword(@PathVariable Long id,@RequestBody UserSenhaDto     userSenhaDto){
         User obj = userService.editarSenha(id,userSenhaDto.getSenhaAtual(),userSenhaDto.getNovaSenha(),userSenhaDto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping
-   public ResponseEntity<List<User>> findAll( User user){
+   public ResponseEntity<List<UserResponseDTO>> findAll( User user){
     List<User> list = userService.findAll();
-    return ResponseEntity.ok(list);
+    return ResponseEntity.ok(UserMapper.toListDto(list));
    }
 }
