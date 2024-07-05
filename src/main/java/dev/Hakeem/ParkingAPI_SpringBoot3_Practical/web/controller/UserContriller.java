@@ -21,6 +21,7 @@ import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserSenhaDto;
 import dev.Hakeem.parkingapi_springboot3_practical.web.dto.mapper.UserMapper;
 import dev.Hakeem.parkingapi_springboot3_practical.web.exception.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -93,6 +94,13 @@ public class UserContriller {
     }
 
     
+
+    @Operation(summary = "Listar todos os usuarios", description = "Listar todos os usuarios cadastrados",
+             responses = {
+                         @ApiResponse(responseCode = "200",description = "Lista com todos os usuarios contratados",
+                               content = @Content(mediaType = "application/json",
+                               array = @ArraySchema(schema = @Schema(implementation = UserResponseDTO.class))))
+             })
 
     @GetMapping
    public ResponseEntity<List<UserResponseDTO>> findAll( User user){
