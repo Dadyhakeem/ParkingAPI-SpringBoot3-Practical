@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.Hakeem.parkingapi_springboot3_practical.exception.EntityNotFoundException;
 import dev.Hakeem.parkingapi_springboot3_practical.exception.UsernameUniqueViolationException;
 import dev.Hakeem.parkingapi_springboot3_practical.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,7 @@ public User salvar(User user) {
 
 @Transactional(readOnly = true)
 public User buscarPorId(Long id) {
-    return userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
+    return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(String.format("Usuario id=%s nao encontrado", id)));
 }
 
 @Transactional
