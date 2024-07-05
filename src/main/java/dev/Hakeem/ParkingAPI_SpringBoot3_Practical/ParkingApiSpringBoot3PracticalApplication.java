@@ -1,4 +1,4 @@
-package dev.hakeem.parkingapi_springboot3_practical;
+package dev.Hakeem.parkingapi_springboot3_practical;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

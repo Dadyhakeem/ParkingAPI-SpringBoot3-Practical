@@ -1,4 +1,4 @@
-package dev.hakeem.parkingapi_springboot3_practical.web.dto;
+package dev.Hakeem.parkingapi_springboot3_practical.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,22 +1,23 @@
-package dev.hakeem.parkingapi_springboot3_practical.service;
+package dev.Hakeem.parkingapi_springboot3_practical.service;
 
 import java.util.List;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import dev.hakeem.parkingapi_springboot3_practical.entities.User;
-import dev.hakeem.parkingapi_springboot3_practical.repository.UserRepository;
+import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.Hakeem.parkingapi_springboot3_practical.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+
 
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    @Autowired
+    
    private UserRepository userRepository;
 @Transactional
 public User salvar(User user) {

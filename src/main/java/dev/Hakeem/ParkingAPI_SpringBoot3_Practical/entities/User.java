@@ -1,4 +1,4 @@
-package dev.hakeem.parkingapi.springboot3.practical.entities;
+package dev.Hakeem.parkingapi_springboot3_practical.entities;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package dev.hakeem.parkingapi_springboot3_practical.web.exception;
+package dev.Hakeem.parkingapi_springboot3_practical.exception;
 
 import java.util.HashMap;
 import java.util.Map;

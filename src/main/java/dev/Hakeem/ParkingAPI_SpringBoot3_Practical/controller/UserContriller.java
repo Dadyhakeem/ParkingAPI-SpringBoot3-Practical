@@ -1,33 +1,35 @@
-package dev.hakeem.parkingapi_springboot3_practical.web.controller;
+package dev.Hakeem.parkingapi_springboot3_practical.controller;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import dev.hakeem.parkingapi_springboot3_practical.entities.User;
-import dev.hakeem.parkingapi_springboot3_practical.service.UserService;
-import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
-import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
-import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserSenhaDto;
-import dev.hakeem.parkingapi_springboot3_practical.web.dto.mapper.UserMapper;
+import org.springframework.web.bind.annotation.RestController;
+
+import dev.Hakeem.parkingapi_springboot3_practical.dto.UserCreateDto;
+import dev.Hakeem.parkingapi_springboot3_practical.dto.UserResponseDTO;
+import dev.Hakeem.parkingapi_springboot3_practical.dto.UserSenhaDto;
+import dev.Hakeem.parkingapi_springboot3_practical.dto.mapper.UserMapper;
+import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.Hakeem.parkingapi_springboot3_practical.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 @RequestMapping("api/v1/users")
 public class UserContriller {
-     @Autowired
-    private UserService userService;
+     
+     private final UserService userService;
     
     @PostMapping
     public ResponseEntity<UserResponseDTO>create(@Valid @RequestBody UserCreateDto userCreateDto){
