@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.dto;
+package dev.Hakeem.parkingapi_springboot3_practical.web.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

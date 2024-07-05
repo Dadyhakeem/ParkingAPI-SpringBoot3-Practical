@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.dto.mapper;
+package dev.Hakeem.parkingapi_springboot3_practical.web.dto.mapper;
 
 
 import java.util.List;
@@ -8,9 +8,9 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
-import dev.Hakeem.parkingapi_springboot3_practical.dto.UserCreateDto;
-import dev.Hakeem.parkingapi_springboot3_practical.dto.UserResponseDTO;
 import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
+import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
 
 
 

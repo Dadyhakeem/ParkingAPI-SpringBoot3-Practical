@@ -2,13 +2,13 @@ package dev.Hakeem.parkingapi_springboot3_practical.service;
 
 import java.util.List;
 
-
-
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.Hakeem.parkingapi_springboot3_practical.exception.UsernameUniqueViolationException;
 import dev.Hakeem.parkingapi_springboot3_practical.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -17,11 +17,16 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    
-   private UserRepository userRepository;
-@Transactional
+   @Autowired 
+   private final UserRepository userRepository;
+
+   @Transactional
 public User salvar(User user) {
+    try{ 
     return userRepository.save(user);
+    } catch(DataIntegrityViolationException ex){
+        throw new UsernameUniqueViolationException(String.format("Username {%s} já cadastrado",user.getUsername()));
+    }
 }
 
 @Transactional(readOnly = true)

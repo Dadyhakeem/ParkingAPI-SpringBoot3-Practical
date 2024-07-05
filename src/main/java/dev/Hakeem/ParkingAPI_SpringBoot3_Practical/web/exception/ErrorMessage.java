@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.exception;
+package dev.Hakeem.parkingapi_springboot3_practical.web.exception;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
@@ -23,6 +25,7 @@ public class ErrorMessage {
     private int status;
     private String statustext;
     private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String,String>erros;
 
     
