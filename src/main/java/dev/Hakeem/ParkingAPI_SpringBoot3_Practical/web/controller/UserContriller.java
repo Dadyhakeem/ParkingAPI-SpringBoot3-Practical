@@ -19,11 +19,17 @@ import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
 import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
 import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserSenhaDto;
 import dev.Hakeem.parkingapi_springboot3_practical.web.dto.mapper.UserMapper;
+import dev.Hakeem.parkingapi_springboot3_practical.web.exception.ErrorMessage;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
-
+@Tag(name = "User", description = "Contém todos as operacoes relativas aos recurcos pra cadastro,edicao e leitura de um usuario.")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/users")
@@ -31,6 +37,18 @@ public class UserContriller {
      
      private final UserService userService;
     
+     @Operation( summary = "Criar um novo usuario",description = "Recurso para criar um novo usuario"
+               ,responses = {
+                   @ApiResponse(responseCode ="201",description = "Recurso criado com sucesso",
+                    content = @Content(mediaType = "application/json",schema = @Schema(implementation = UserResponseDTO.class))),
+                   @ApiResponse(responseCode = "409",description = "Usuário e-mail já cadastrado    no  sistema",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+                   @ApiResponse(responseCode = "422",description = "Recurso nao processada por dados de entrada invalida",
+                   content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class)))
+                }
+            )    
+
+     
     @PostMapping
     public ResponseEntity<UserResponseDTO>create(@Valid @RequestBody UserCreateDto userCreateDto){
          User obj = userService.salvar(UserMapper.toUser(userCreateDto));
