@@ -73,6 +73,19 @@ public class UserContriller {
     }
 
 
+
+ @Operation( summary = "Atualizar senha",description = "Atualizar senha"
+    ,responses = {
+        @ApiResponse(responseCode ="204",description = "Senha atualizada com sucesso",
+         content = @Content(mediaType = "application/json",schema = @Schema(implementation = Void.class))),
+        @ApiResponse(responseCode = "400",description = "Senha nao confere",
+         content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
+         @ApiResponse(responseCode = "404",description = "Recurso nao encontrado ",
+         content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class)))
+     }
+ )    
+
+
         @PatchMapping(value = "/{id}")
         public ResponseEntity<Void> updatePassword(@PathVariable Long id,@Valid @RequestBody UserSenhaDto userSenhaDto){
         User obj = userService.editarSenha(id,userSenhaDto.getSenhaAtual(),userSenhaDto.getNovaSenha(),userSenhaDto.getConfirmaSenha());
