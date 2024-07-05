@@ -55,6 +55,17 @@ public class UserContriller {
          return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDto(obj));
          
     }
+
+
+    @Operation( summary = "Recuperar um usuario pelo id",description = "Recuperar usuario pelo id "
+               ,responses = {
+                   @ApiResponse(responseCode ="200",description = "Recurso recuperado com sucesso",
+                    content = @Content(mediaType = "application/json",schema = @Schema(implementation = UserResponseDTO.class))),                  
+                   @ApiResponse(responseCode = "404",description = "Recurso nao encontrado ",
+                   content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class)))
+                }
+            ) 
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<UserResponseDTO> getById(@PathVariable Long id){
         User obj = userService.buscarPorId(id);
