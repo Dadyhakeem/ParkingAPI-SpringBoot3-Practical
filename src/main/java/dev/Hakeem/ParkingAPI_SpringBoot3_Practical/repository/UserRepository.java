@@ -1,8 +1,8 @@
-package dev.Hakeem.parkingapi_springboot3_practical.repository;
+package dev.hakeem.parkingapi_springboot3_practical.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.hakeem.parkingapi_springboot3_practical.entities.User;
 
 
 

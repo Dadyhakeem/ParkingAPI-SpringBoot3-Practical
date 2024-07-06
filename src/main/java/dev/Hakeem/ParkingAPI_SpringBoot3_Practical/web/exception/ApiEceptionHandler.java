@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.web.exception;
+package dev.hakeem.parkingapi_springboot3_practical.web.exception;
 
 
 import org.springframework.http.HttpStatus;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import dev.Hakeem.parkingapi_springboot3_practical.exception.EntityNotFoundException;
-import dev.Hakeem.parkingapi_springboot3_practical.exception.UsernameUniqueViolationException;
+import dev.hakeem.parkingapi_springboot3_practical.exception.EntityNotFoundException;
+import dev.hakeem.parkingapi_springboot3_practical.exception.UsernameUniqueViolationException;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice

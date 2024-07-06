@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.config;
+package dev.hakeem.parkingapi_springboot3_practical.config;
 
 import java.util.TimeZone;
 

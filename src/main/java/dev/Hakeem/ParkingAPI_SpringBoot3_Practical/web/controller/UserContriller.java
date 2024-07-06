@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.web.controller;
+package dev.hakeem.parkingapi_springboot3_practical.web.controller;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
-import dev.Hakeem.parkingapi_springboot3_practical.service.UserService;
-import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
-import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
-import dev.Hakeem.parkingapi_springboot3_practical.web.dto.UserSenhaDto;
-import dev.Hakeem.parkingapi_springboot3_practical.web.dto.mapper.UserMapper;
-import dev.Hakeem.parkingapi_springboot3_practical.web.exception.ErrorMessage;
+import dev.hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.hakeem.parkingapi_springboot3_practical.service.UserService;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserSenhaDto;
+import dev.hakeem.parkingapi_springboot3_practical.web.dto.mapper.UserMapper;
+import dev.hakeem.parkingapi_springboot3_practical.web.exception.ErrorMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;

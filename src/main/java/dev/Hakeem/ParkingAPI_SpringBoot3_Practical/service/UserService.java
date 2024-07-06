@@ -1,4 +1,4 @@
-package dev.Hakeem.parkingapi_springboot3_practical.service;
+package dev.hakeem.parkingapi_springboot3_practical.service;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import dev.Hakeem.parkingapi_springboot3_practical.entities.User;
-import dev.Hakeem.parkingapi_springboot3_practical.exception.EntityNotFoundException;
-import dev.Hakeem.parkingapi_springboot3_practical.exception.UsernameUniqueViolationException;
-import dev.Hakeem.parkingapi_springboot3_practical.repository.UserRepository;
+import dev.hakeem.parkingapi_springboot3_practical.entities.User;
+import dev.hakeem.parkingapi_springboot3_practical.exception.EntityNotFoundException;
+import dev.hakeem.parkingapi_springboot3_practical.exception.UsernameUniqueViolationException;
+import dev.hakeem.parkingapi_springboot3_practical.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 
