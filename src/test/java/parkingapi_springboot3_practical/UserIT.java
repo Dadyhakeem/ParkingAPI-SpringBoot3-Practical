@@ -12,8 +12,8 @@ import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
 import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
 import dev.hakeem.parkingapi_springboot3_practical.web.exception.ErrorMessage;
 @SpringBootTest(classes = ParkingApiSpringBoot3PracticalApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Sql(scripts = "/sql/user/userInsert.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(scripts = "/sql/user/userDelete.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+@Sql(scripts = "classpath:sql/user/user-insert.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = "classpath:sql/user/user-delete.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class UserIT {
    
    
@@ -36,7 +36,7 @@ public class UserIT {
                   org.assertj.core.api.Assertions.assertThat(responseBody).isNotNull();
                   org.assertj.core.api.Assertions.assertThat(responseBody.getId()).isNotNull();
                   org.assertj.core.api.Assertions.assertThat(responseBody.getUsername()).isEqualTo("quetinha@gmail.com");
-                  org.assertj.core.api.Assertions.assertThat(responseBody.getRole()).isEqualTo("CLIENTE");
+                  org.assertj.core.api.Assertions.assertThat(responseBody.getRole()).isEqualTo("CLIENT");
     }
     @Test
     public void createUser_ComUsernameValidos_RetornarErroMessagemStatus422()
@@ -142,7 +142,7 @@ public class UserIT {
                   .post()
                   .uri("/api/v1/users")
                   .contentType(MediaType.APPLICATION_JSON)
-                  .bodyValue(new UserCreateDto("dady@gamil.com",""))
+                  .bodyValue(new UserCreateDto("dady@gmail.com","123456"))
                   .exchange()
                   .expectStatus().isEqualTo(409)
                   .expectBody(ErrorMessage.class)
