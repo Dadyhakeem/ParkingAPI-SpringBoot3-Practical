@@ -82,7 +82,9 @@ public class UserContriller {
         @ApiResponse(responseCode = "400",description = "Senha nao confere",
          content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMessage.class))),
          @ApiResponse(responseCode = "404",description = "Recurso nao encontrado ",
-         content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class)))
+         content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class))),
+         @ApiResponse(responseCode = "422",description = "Campos  invalida ou mal formatados",
+                 content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class)))
      }
  )    
 

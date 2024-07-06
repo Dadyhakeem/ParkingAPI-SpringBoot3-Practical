@@ -2,6 +2,7 @@ package dev.hakeem.parkingapi_springboot3_practical.service;
 
 import java.util.List;
 
+import dev.hakeem.parkingapi_springboot3_practical.exception.PasswordInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -38,12 +39,12 @@ public User buscarPorId(Long id) {
 @Transactional
 public User editarSenha(Long id, String senhaAtual, String novaSenha, String confirmaSenha) {
     if (!novaSenha.equals(confirmaSenha)) {
-        throw new RuntimeException("Nova senha nao confero com confirmacao de senha.");
+        throw new PasswordInvalidException("Nova senha nao confero com confirmacao de senha.");
     }
     User user = buscarPorId(id);
 
      if (!user.getPassword().equals(senhaAtual)) {
-        throw new RuntimeException("Nova senha nao confere.");
+        throw new PasswordInvalidException("Nova senha nao confere.");
      }
     user.setPassword(novaSenha);
     return user;
