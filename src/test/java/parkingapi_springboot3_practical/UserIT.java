@@ -134,8 +134,23 @@ public class UserIT {
                   
                   
     }
+    
+    @Test
+    public void createUser_ComUsernameRepetido_RetornarErroMessagemStatus409()
+    {
+    ErrorMessage responseBody = testClient
+                  .post()
+                  .uri("/api/v1/users")
+                  .contentType(MediaType.APPLICATION_JSON)
+                  .bodyValue(new UserCreateDto("dady@gamil.com",""))
+                  .exchange()
+                  .expectStatus().isEqualTo(409)
+                  .expectBody(ErrorMessage.class)
+                  .returnResult().getResponseBody();
 
-
+                  org.assertj.core.api.Assertions.assertThat(responseBody).isNotNull();
+                  org.assertj.core.api.Assertions.assertThat(responseBody.getStatus()).isEqualTo(409);
+    }
 
 
 
