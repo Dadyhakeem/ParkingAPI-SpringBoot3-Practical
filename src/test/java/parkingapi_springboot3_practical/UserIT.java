@@ -12,6 +12,9 @@ import dev.hakeem.parkingapi_springboot3_practical.ParkingApiSpringBoot3Practica
 import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserCreateDto;
 import dev.hakeem.parkingapi_springboot3_practical.web.dto.UserResponseDTO;
 import dev.hakeem.parkingapi_springboot3_practical.web.exception.ErrorMessage;
+
+import java.util.List;
+
 @SpringBootTest(classes = ParkingApiSpringBoot3PracticalApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Sql(scripts = "classpath:sql/user/user-insert.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
 @Sql(scripts = "classpath:sql/user/user-delete.sql", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
@@ -297,8 +300,20 @@ public class UserIT {
 
 
 
+    }
 
+    @Test
+    public void listarUsuarios_SemqualquerParametro_RetornarlistadeUsuarioComStatus200() {
+        List<UserResponseDTO> userResponseDTOS = testClient
+                .get()
+                .uri("/api/v1/users")
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(UserResponseDTO.class)
+                .returnResult().getResponseBody();
 
+        org.assertj.core.api.Assertions.assertThat(userResponseDTOS).isNotNull();
+        org.assertj.core.api.Assertions.assertThat(userResponseDTOS.size()).isEqualTo(4);
 
     }
 
