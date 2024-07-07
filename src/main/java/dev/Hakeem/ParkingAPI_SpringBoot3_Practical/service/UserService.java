@@ -2,6 +2,7 @@ package dev.hakeem.parkingapi_springboot3_practical.service;
 
 import java.util.List;
 
+import dev.hakeem.parkingapi_springboot3_practical.entities.Role;
 import dev.hakeem.parkingapi_springboot3_practical.exception.PasswordInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -57,12 +58,12 @@ public List<User> findAll() {
     
 }
 
+    @Transactional(readOnly = true )
+    public User uscarPorUsername(String username) {
+       return userRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException(String.format("Usuario username=%s nao encontrado", username)));
+    }
 
-
-
-
-
-
-
- 
+    public Role buscarRolePorUseername(String username) {
+          return  userRepository.findRoleByUsername(username);
+    }
 }
