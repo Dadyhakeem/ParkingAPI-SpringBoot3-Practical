@@ -92,6 +92,7 @@ public class UserContriller {
 
 
         @PatchMapping(value = "/{id}")
+        @PreAuthorize("hasAnyRole('ADMIN', 'CLIENT') AND (#id == authentication.principal.id)")
         public ResponseEntity<Void> updatePassword(@PathVariable Long id,@Valid @RequestBody UserSenhaDto userSenhaDto){
         User obj = userService.editarSenha(id,userSenhaDto.getSenhaAtual(),userSenhaDto.getNovaSenha(),userSenhaDto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
