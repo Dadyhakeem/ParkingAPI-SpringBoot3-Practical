@@ -54,33 +54,52 @@ public class JwtUtils {
         return  new JwtToken(token);
     }
 
-    private  static Claims getClaimsFromToken(String token){
-        try{
-            return Jwts.parserBuilder()
-                    .setSigningKey(generateKey()).build()
-                    .parseClaimsJwt(refactorToken(token)).getBody();
-
-        }catch (JwtException ex){
-            log.error(String.format("Token invalido %s",ex.getMessage()));
+    private static Claims getClaimsFromToken(String token) {
+        try {
+            if (token != null && token.startsWith(JWT_BEARER)) {
+                token = token.substring(JWT_BEARER.length());
+                return Jwts.parserBuilder()
+                        .setSigningKey(generateKey())
+                        .build()
+                        .parseClaimsJws(token)
+                        .getBody();
+            } else {
+                log.warn("Token inválido ou mal formatado: {}", token);
+            }
+        } catch (JwtException ex) {
+            log.error("Erro ao analisar token JWT: {}", ex.getMessage());
         }
         return null;
     }
+
 
     public static String getUsernameFromToken(String token){
         return getClaimsFromToken(token).getSubject();
     }
 
-    public  static boolean isTokenValid(String token){
-        try{
-             Jwts.parserBuilder()
-                    .setSigningKey(generateKey()).build()
-                    .parseClaimsJwt(refactorToken(token));
-              return true;
-        }catch (JwtException ex){
-            log.error(String.format("Token invalido %s",ex.getMessage()));
+    public static boolean isTokenValid(String token) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(generateKey())
+                    .build()
+                    .parseClaimsJws(refactorToken(token))
+                    .getBody();
+
+            // Verifica se o token não está expirado
+            Date expiration = claims.getExpiration();
+            if (expiration != null && expiration.after(new Date())) {
+                // Token válido se a data de expiração for posterior à data atual
+                return true;
+            } else {
+                log.warn("Token expirado");
+                return false;
+            }
+        } catch (JwtException | IllegalArgumentException ex) {
+            log.error("Token inválido: " + ex.getMessage());
         }
         return false;
     }
+
 
     private static String refactorToken (String token){
         if (token.contains(JWT_BEARER)){
