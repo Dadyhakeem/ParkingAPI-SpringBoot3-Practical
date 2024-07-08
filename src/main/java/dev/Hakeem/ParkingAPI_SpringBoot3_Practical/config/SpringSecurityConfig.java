@@ -1,5 +1,6 @@
 package dev.hakeem.parkingapi_springboot3_practical.config;
 
+import dev.hakeem.parkingapi_springboot3_practical.jwt.JwtAuthenticationEntrypoint;
 import dev.hakeem.parkingapi_springboot3_practical.jwt.JwtAuthorizationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,7 +36,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
                          session ->  session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                     ).addFilterBefore(
                             jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class
-
+                    ).exceptionHandling(ex -> ex
+                            .authenticationEntryPoint(new JwtAuthenticationEntrypoint())
                  ).build();
         }
 
