@@ -69,7 +69,7 @@ public class UserContriller {
             ) 
 
     @GetMapping(value = "/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') OR (hasRole('CLIENT')AND #id == authentication.principal.id)")
     public ResponseEntity<UserResponseDTO> getById(@PathVariable Long id){
         User obj = userService.buscarPorId(id);
         return ResponseEntity.ok(UserMapper.toDto(obj));
