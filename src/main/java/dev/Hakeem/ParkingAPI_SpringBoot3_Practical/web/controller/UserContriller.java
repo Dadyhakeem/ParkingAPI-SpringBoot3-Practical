@@ -108,6 +108,7 @@ public class UserContriller {
              })
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
    public ResponseEntity<List<UserResponseDTO>> findAll( User user){
     List<User> list = userService.findAll();
     return ResponseEntity.ok(UserMapper.toListDto(list));
