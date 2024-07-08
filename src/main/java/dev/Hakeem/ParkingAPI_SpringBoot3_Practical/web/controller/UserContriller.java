@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -68,6 +69,7 @@ public class UserContriller {
             ) 
 
     @GetMapping(value = "/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<UserResponseDTO> getById(@PathVariable Long id){
         User obj = userService.buscarPorId(id);
         return ResponseEntity.ok(UserMapper.toDto(obj));
@@ -86,7 +88,7 @@ public class UserContriller {
          @ApiResponse(responseCode = "422",description = "Campos  invalida ou mal formatados",
                  content = @Content(mediaType = "application/json",schema = @Schema(implementation = ErrorMessage.class)))
      }
- )    
+ )
 
 
         @PatchMapping(value = "/{id}")
