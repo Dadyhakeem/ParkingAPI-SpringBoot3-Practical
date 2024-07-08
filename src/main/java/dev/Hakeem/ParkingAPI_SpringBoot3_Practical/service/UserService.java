@@ -6,6 +6,7 @@ import dev.hakeem.parkingapi_springboot3_practical.entities.Role;
 import dev.hakeem.parkingapi_springboot3_practical.exception.PasswordInvalidException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +23,12 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
    @Autowired 
    private final UserRepository userRepository;
+   private final PasswordEncoder passwordEncoder;
 
    @Transactional
 public User salvar(User user) {
-    try{ 
+    try{
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
     return userRepository.save(user);
     } catch(DataIntegrityViolationException ex){
         throw new UsernameUniqueViolationException(String.format("Username {%s} já cadastrado",user.getUsername()));
@@ -44,10 +47,10 @@ public User editarSenha(Long id, String senhaAtual, String novaSenha, String con
     }
     User user = buscarPorId(id);
 
-     if (!user.getPassword().equals(senhaAtual)) {
+     if (!passwordEncoder.matches(senhaAtual,user.getPassword())) {
         throw new PasswordInvalidException("Nova senha nao confere.");
      }
-    user.setPassword(novaSenha);
+    user.setPassword(passwordEncoder.encode(novaSenha));
     return user;
 }
 
